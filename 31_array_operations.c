@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 int main()
 {
@@ -46,10 +47,34 @@ int main()
     for (int i = 0; i < size_2; ++i)
         printf("%d ", func_2[i]);
     printf("\n");
-
+    
     // ===================================================================
     // сортировка выбором
+    int arr[] = {21, 10, 5, 0, -3, -8, -13, 21, 10, 5, 0, -3, -8, -13, 21, 10, 5, 0, -3, -8, -13, 21, 10, 5, 0, -3, -8, -13, 21, 10, 5, 0, -3, -8, -13};
+    int size_arr = sizeof(arr)/sizeof(*arr);
+    int temp;
     
+    clock_t start = clock();
+    for (int i = 0; i < size_arr; ++i) {
+        for (int j = 1+i; j < size_arr; ++j) {
+            if (arr[j] < arr[i]) {                      // знак '<' сортировка от меншего к большему, '>' наоботор
+                temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+            } else {
+                continue;
+            }
+        }
+    }
+    clock_t end = clock();
+
+    double elapsed = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Time: %f seconds\n", elapsed);
+
+    // печать
+    for (int i = 0; i < size_arr; ++i)
+        printf("%d ", arr[i]);
+    printf("\n");
     
     return 0;
 }
