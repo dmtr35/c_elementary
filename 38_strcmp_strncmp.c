@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>         /* strcmp, strncmp, strchr, strrchr, strstr, strpbrk */
+#include <stdlib.h>                   /* malloc, free */
 
 /*  возвращает 0 эсли строки равны
     если < 0 то первая строка меньше чем вторая строка
@@ -29,6 +30,17 @@ int equals(const char *str1, const char *str2)
         }
     }
     return 0;
+}
+
+void revers_str(char *str1, char *str2)
+{
+    size_t size = strlen(str1);
+    char *end = str2 + size -1;
+
+    for (int i = 0; i < size; ++i) {
+        *end-- = str1[i];
+    }
+    str2[size] = '\0';
 }
 
 
@@ -77,17 +89,13 @@ int main()
     // ========================================================================
     // реверс строки
 
-    char revers_s3_buf[20];
-    char *ptr_reserv = s3;
     size_t size_s3 = strlen(s3);
-    ptr_reserv += size_s3 - 1;                                          // указатель на последний символ
+    char *revers_s3_buf = malloc(size_s3 + 1);
 
-    for (int i = 0; i < size_s3; ++i) {
-        revers_s3_buf[i] = *ptr_reserv--;
-    }
-
+    revers_str(s3, revers_s3_buf);
     printf("%s\n", revers_s3_buf);                                      // gnimmargorp nrael i
 
+    free(revers_s3_buf);
 
     return 0;
 }
