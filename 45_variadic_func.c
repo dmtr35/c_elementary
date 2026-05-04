@@ -2,17 +2,16 @@
 #include <stdarg.h>             /* va_arg */
 
 // ... это вариадические параметры
-double sum(int count, ...)
+int sum(int count, ...)
 {
     int s = 0;
     va_list arg;                            // специальный указатель va_list
     va_start(arg, count);                   // указывает на первый вариадический параметр (который идет после count)
-    printf("%p:\n", arg);
+    // printf("%p:\n", arg);
 
 
     for(int i = 0; i < count; ++i) {
-        // s += va_arg(arg, double);
-        printf("arg[%d]: %.2f\n", i, va_arg(arg, double));
+        s += va_arg(arg, int);
     }
 
     printf("\n");
@@ -23,16 +22,16 @@ double sum(int count, ...)
 
 int main()
 {
-    double one = 1.;
-    double two = 2.;
-    double three = 3.;
-    double four = 4.;
-    double five = 5.;
-    double six = 6.;
-    double seven = 7.;
+    short one = 1;
+    short two = 2;
+    short three = 3;
+    short four = 4;
+    short five = 5;
+    short six = 6;
+    short seven = 7;
     // int res = sum(5, 1, 2, 3, 4, 5);
-    double res = sum(10, one, two, three, four, five, six, seven, 10., 11., 12.);
-    printf("res = %.2f\n", res);
+    int res = sum(7, one, two, three, four, five, six, seven);
+    printf("res = %d\n", res);
 
     return 0;
 }

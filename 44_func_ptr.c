@@ -11,7 +11,7 @@
 
 
 // имя функции это и есть указатель на эту функцию
-int sq_rect(int width, int height)
+static int sq_rect(int width, int height)
 {
     return width * height;
 }
